@@ -1,29 +1,19 @@
 var http = require('http');
-var fs = require('fs');
+var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
 
-var server = http.createServer(function(request, response){
+var app = express();
 
+//parse json urls
+app.use(bodyParser.json());
+//serve static files
+app.use(express.static(__dirname + '/../client'));
+app.use('/node_modules', express.static(__dirname + '/../node_modules'))
 
-  if(request.method === 'GET' && request.url === '/') {
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    fs.createReadStream('index.html').pipe(response);
-  }
-  if(request.method === 'GET' && request.url === '/node_modules/angular/angular.min.js'){
-    response.writeHead(200, {'Content-Type': 'application/javascript'});
-    fs.createReadStream('node_modules/angular/angular.min.js').pipe(response);
-  }
-  if(request.method === 'GET' && request.url === '/client/app/app.js'){
-    response.writeHead(200, {'Content-Type': 'application/javascript'});
-    fs.createReadStream('client/app/app.js').pipe(response);
-  }
-  if(request.method === 'GET' && request.url === 'http://www.indeed.com/ads/apiresults.js'){
-    response.writeHead(200, {'Content-Type': 'application/javascript'});
-    fs.createReadStream('http://www.indeed.com/ads/apiresults.js').pipe(response);
-  }
-  if(request.method === 'GET' && request.url === 'http://www.indeed.com/p/jobsearch.gif'){
-    response.writeHead(200, {'Content-Type': 'image/gif'});
-    fs.createReadStream('http://www.indeed.com/ads/apiresults.js').pipe(response);
-  }
+//ROUTING
+app.get('/', function(request, response){
+  response.sendFile(path.resolve(__dirname + '/../client/index.html'));
+})
 
-}).listen(8080);
-
+app.listen(8080);

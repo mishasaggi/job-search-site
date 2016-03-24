@@ -13,10 +13,13 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mishasaggi/job-search-site/issues"
+    "url": "https://github.com/mishasaggi/job-search-site/"
   },
   "homepage": "https://github.com/mishasaggi/job-search-site#readme",
   "dependencies": {
-    "angular": "^1.5.2"
+    "angular": "^1.5.2",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0"
   }
 }
