@@ -1,0 +1,22 @@
+<html ng-app="app">
+  <head>
+  <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./client/app/app.js"></script>
+  </head>
+  <body ng-controller="SearchController">
+    <div class="container">
+      <h2> Search for jobs </h2>
+      <div class="search-bar">
+        <form>
+          <input type="text" placeholder="job-title" ng-model="userInput.jobTitle">
+          <input type="text" placeholder="zipcode" ng-model="userInput.zipcode">
+          <button type="submit" ng-click="fetchJobs()"> search </button>
+        </form>
+
+      </div>
+      <div class="results">
+      <!-- results go in an iteration -->
+      </div>
+    </div>
+  </body>
+</html>

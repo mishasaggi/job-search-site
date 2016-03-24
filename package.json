@@ -1,0 +1,22 @@
+{
+  "name": "job-search-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishasaggi/job-search-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mishasaggi/job-search-site/issues"
+  },
+  "homepage": "https://github.com/mishasaggi/job-search-site#readme",
+  "dependencies": {
+    "angular": "^1.5.2"
+  }
+}
