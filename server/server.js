@@ -11,9 +11,14 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'))
 
-//ROUTING
+//----ROUTING----
+
+//serving views
 app.get('/', function(request, response){
   response.sendFile(path.resolve(__dirname + '/../client/index.html'));
-})
+});
+
+//api routing
+
 
 app.listen(8080);
