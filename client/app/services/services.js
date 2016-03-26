@@ -1,0 +1,1 @@
+// add factory methods for search and admin
