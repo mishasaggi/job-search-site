@@ -1,1 +1,17 @@
- <!-- render results of the search -->
+<div class="container">
+  <div class="job-item" ng-repeat"job in allJobs">
+    <div class="row1">
+      {{ job.jobtitle }}
+    </div> 
+    <div class="row2">
+      <span> {{ job.company }} </span>
+      <span> {{ job.formattedLocation }}</span>
+    </div>
+    <div class="row3">
+      {{ job.snippet }}
+    </div>
+    <div class="row4">
+      {{ formattedRelativeTime }}
+    </div>
+  </div>
+</div>
