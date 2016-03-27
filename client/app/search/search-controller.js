@@ -22,7 +22,15 @@ angular.module('app.search', [])
           company: "moto",
           formattedLocation: "ATX",
           snippet: "blah blah...",
-          formattedRelativeTime: "3 days ago"
+          formattedRelativeTime: "3 days ago",
+          url: "http://faculty.washington.edu/krumme/guides/links.html"
+        }, {
+          jobtitle: "go dev",
+          company: "google",
+          formattedLocation: "MA",
+          snippet: "blah blah...",
+          formattedRelativeTime: "3 days ago",
+          url: "www.apple.com"
         })
         $scope.results = true;
       }
