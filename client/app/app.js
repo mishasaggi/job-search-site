@@ -1,19 +1,24 @@
-// inject all dependencies
+console.log("in the app");
 angular.module('app', [
-  'ngRoute',
+  'ui.router',
   'app.search'
-  ])
+  ]
+)
 
 // routing
-  .config(["routeProvider", "$httpProvider", function($routeProvider, $httpProvider){
-    $routeProvider
-      .when('/', {
-        templateUrl: 'index.html'
-      })
-      .when('/search', {
-        templateUrl: 'app/search/search.html',
-        controller: 'SearchController'
-      })
-      .otherwise('/');
+  .config(function($stateProvider, $urlRouterProvider) {
 
-  }])
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'app/search/search.html',
+      controller: 'SearchController'
+    })
+    .state('admin', {
+      url: '/admin',
+      templateUrl: 'app/admin/admin.html',
+      controller: 'AdminController'
+    })
+  })

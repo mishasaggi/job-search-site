@@ -1,17 +1,33 @@
-<div class="container">
-  <div class="job-item" ng-repeat"job in allJobs">
-    <div class="row1">
-      {{ job.jobtitle }}
-    </div> 
-    <div class="row2">
-      <span> {{ job.company }} </span>
-      <span> {{ job.formattedLocation }}</span>
-    </div>
-    <div class="row3">
-      {{ job.snippet }}
-    </div>
-    <div class="row4">
-      {{ formattedRelativeTime }}
-    </div>
+<div class='container'>
+  <h2> Search for jobs </h2>
+  <div class='search-bar'>
+    <form>
+      <input type='text' placeholder='job-title' ng-model='userInput.jobTitle'>
+      <input type='text' placeholder='zipcode' ng-model='userInput.zipcode'>
+      <button type='submit' ng-click='searchNow()'> search now </button>
+      <span ng-show='userInputError' class='error'> Provide atleast one search criteria!</span>
+    </form>
+
   </div>
+ <div class = 'results' ng-show='results'>
+  <h2> Jobs found! </h2>
+  <div class='jobs-all' ng-model='jobs'>
+    <div class='job-item' ng-repeat='job in jobs'>
+        <div class='row1'>
+          <a class='url' ng-model='job.url' ng-href='{{job.url}}' target='_blank'> {{ job.jobtitle }} </a>
+        </div> 
+        <div class='row2'>
+          <span> {{ job.company }} </span>
+          <span> {{ job.formattedLocation }}</span>
+        </div>
+        <div class='row3'>
+          {{ job.snippet }}
+        </div>
+        <div class='row4'>
+          {{ formattedRelativeTime }}
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
+

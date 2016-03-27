@@ -1,25 +1,20 @@
-<html ng-app="app">
+<!DOCTYPE html>
+<html ng-app='app'>
   <head>
-    <script src="node_modules/angular/angular.min.js"></script>
-    <script src="app/app.js"></script>
-    <script type="text/javascript" href="http://www.indeed.com/ads/apiresults.js"></script>
+    <script type='text/javascript' href='http://www.indeed.com/ads/apiresults.js'></script>
   </head>
-  <body ng-controller="SearchController">
-    <div class="container">
-      <h2> Search for jobs </h2>
-      <div class="search-bar">
-        <form>
-          <input type="text" placeholder="job-title" ng-model="userInput.jobTitle">
-          <input type="text" placeholder="zipcode" ng-model="userInput.zipcode">
-          <button type="submit" ng-click="searchNow()"> search </button>
-        </form>
-
+  <body>
+    <div class='container'>
+      <div ui-view>
       </div>
-      <div ng-view>
-      </div>
-      <div class="footer">
-        <span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
+      <br/><br/>
+      <div class='footer'>
+        <span id=indeed_at><a href='http://www.indeed.com/'>jobs</a> by <a href='http://www.indeed.com/' title='Job Search'><img src='http://www.indeed.com/p/jobsearch.gif' style="border: 0; vertical-align: middle;" alt='Indeed job search'></a></span>
       </div>
     </div>
   </body>
+    <script src='node_modules/angular/angular.js'></script>
+    <script src='node_modules/angular-ui-router/release/angular-ui-router.min.js'></script>
+    <script src='app/search/search-controller.js'></script>
+    <script src='app/app.js'></script>
 </html>

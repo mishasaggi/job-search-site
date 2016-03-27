@@ -14,9 +14,9 @@ app.use('/node_modules', express.static(__dirname + '/../node_modules'))
 //----ROUTING----
 
 //serving views
-app.get('/', function(request, response){
-  response.sendFile(path.resolve(__dirname + '/../client/index.html'));
-});
+// app.get('/', function(request, response){
+//   response.sendFile(path.resolve(__dirname + '/../client/index.html'));
+// });
 
 //api routing
 
