@@ -1,6 +1,6 @@
 console.log("in the controller");
 angular.module('app.search', [])
-  .controller('SearchController', ["$scope", "$location", function($scope, $location) {
+  .controller('SearchController', ["$scope", "$location", "UserQuery", function($scope, $location, UserQuery) {
     $scope.userInput = {}
     $scope.userInputError = false;
     $scope.results = false;
@@ -13,6 +13,7 @@ angular.module('app.search', [])
         $scope.userInputError = true;
       } else {
         $scope.userInputError = false;
+
         //call the service method
         // UserQuery.getJobs($scope.userInput)
 
@@ -36,6 +37,6 @@ angular.module('app.search', [])
       }
     }
 
-    //a button to clear results?
+    // maybe have a button to clear results?
 
   }]);
