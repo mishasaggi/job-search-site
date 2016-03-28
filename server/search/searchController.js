@@ -1,41 +1,28 @@
 //route is passing in an interface to the specific db model
 module.exports = function(SearchQuery){
- return {
-  saveStats: function() {
-    //called by the get Jobs method
-  },
-  indeedAPI: function() {
+  return {
+    saveStats: function() {
+      //called by the get Jobs method
+    },
 
-  },
-  getJobs: function(request, response){
-    console.log("in the controller method. the request body is: ", request.body);
+    getJobs: function(req, res){
+      console.log("in the controller method. the request body is: ", req.body);
+      var userQuery = req.body;
+      userQuery.IP = '70.113.67.152' //temp test data
+      userQuery.client = 'Chrome' //temp test data
+      // indeed API call
+      var publisherKey = require('../api-publisher-id.js').publisherId;
+      var request = require('request');
+      var url = 'http://api.indeed.com/ads/apisearch?publisher=' + publisherKey + '&format=json&q=' + userQuery.jobTitle + '&l=' + userQuery.zipcode + '&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=0&co=us&chnl=FJR&userip=' + userQuery.IP + '&useragent=' + userQuery.client +'&v=2' ;
 
-    //test data
-    var results = [{
-      jobtitle: "java dev",
-      company: "moto",
-      formattedLocation: "ATX",
-      snippet: "blah blah...",
-      formattedRelativeTime: "3 days ago",
-      url: "http://faculty.washington.edu/krumme/guides/links.html"
-      },{
-      jobtitle: "go dev",
-      company: "google",
-      formattedLocation: "MA",
-      snippet: "blah blah...",
-      formattedRelativeTime: "3 days ago",
-      url: "www.apple.com"
-    }]
-    response.send(results);
-    //call the method to save stats to the db
+      request({url: url , json: true}, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log(body);
+          res.send(body.results);
+        }
+      })
 
-    // call the method make the API call to indeed
+      //call the method to save stats to the db
+    }
   }
- }
 }
-
-
-// controller methods calling model methods to:
-// save user query, date and ip address to the data base
-
-// make the api call with the default plus user params.
