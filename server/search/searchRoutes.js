@@ -6,4 +6,5 @@ module.exports = function(app, SearchQuery){
   console.log("in the search router. query is: ", SearchQuery, "and controller is: ", searchController);
   app.post('/getJobs', searchController.getJobs);
   app.post('/saveStats', searchController.saveStats);
+  app.get('/getStats', searchController.getStats);
 }

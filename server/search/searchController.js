@@ -42,6 +42,15 @@ module.exports = function(SearchQuery){
       })
 
       //send response
+    },
+
+    getStats: function(req, res) {
+
+      SearchQuery.getStats()
+      .then(function(data){
+        console.log(data);
+        res.send(data);
+      })
     }
   }
 }
