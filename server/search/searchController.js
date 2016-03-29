@@ -1,15 +1,14 @@
 //route is passing in an interface to the specific db model
 module.exports = function(SearchQuery){
   return {
-    saveStats: function() {
-      //called by the get Jobs method
-    },
 
     getJobs: function(req, res){
+
       console.log("in the controller method. the request body is: ", req.body);
       var userQuery = req.body;
       userQuery.IP = '70.113.67.152' //temp test data
       userQuery.client = 'Chrome' //temp test data
+
       // indeed API call
       var publisherKey = require('../api-publisher-id.js').publisherId;
       var request = require('request');
@@ -22,7 +21,15 @@ module.exports = function(SearchQuery){
         }
       })
 
-      //call the method to save stats to the db
+    },
+
+    saveStats: function(req, res) {
+
+      console.log("in save stats method (controller). req is: ", req);
+
+      //call the model method
+
+      //send response
     }
   }
 }

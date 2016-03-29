@@ -1,6 +1,6 @@
 console.log("in the controller");
 angular.module('app.search', [])
-  .controller('SearchController', ["$scope", "$location", "UserQuery", function($scope, $location, UserQuery) {
+  .controller('SearchController', ["$scope", "$location", "UserSearch", function($scope, $location, UserSearch) {
     $scope.userInput = {}
     $scope.userInputError = false;
     $scope.results = false;
@@ -14,12 +14,19 @@ angular.module('app.search', [])
       } else {
         $scope.userInputError = false;
 
-        //call the service method
-        UserQuery.getJobs($scope.userInput)
+        //call the service method to make an API call to indeed
+        UserSearch.getJobs($scope.userInput)
           .then( function(data){
             console.log("data recieved from the server: ", data);
             $scope.jobs = data.data;
             $scope.results = true;
+          })
+          //callthe service method to save stats to db
+          .then (function(){
+            UserSearch.saveStats($scope.userInput);
+          })
+          .then(function(data){
+            console.log("response recieved is: ", data);
           })
       }
     }
