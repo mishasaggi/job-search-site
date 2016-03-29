@@ -12,9 +12,23 @@ angular.module('app.services', [])
       return $http.post('/api/search/saveStats', stats);
     }
 
+    var getStats = function(){
+      console.log("in the admin factory");
+      return $http.get('/api/search/getStats'); 
+    }
+
     return {
       getJobs: getJobs,
-      saveStats: saveStats
+      saveStats: saveStats,
+      getStats: getStats
+    }
+
+  }])
+
+  .factory('AdminDash', ["$http", function($http){
+
+    return {
+
     }
 
   }]);
