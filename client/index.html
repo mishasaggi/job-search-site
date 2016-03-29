@@ -2,6 +2,8 @@
 <html ng-app='app'>
   <head>
     <script type='text/javascript' href='http://www.indeed.com/ads/apiresults.js'></script>
+    <script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
+
   </head>
   <body>
     <div class='container'>
@@ -9,7 +11,12 @@
       </div>
       <br/><br/>
       <div class='footer'>
-        <span id=indeed_at><a href='http://www.indeed.com/'>jobs</a> by <a href='http://www.indeed.com/' title='Job Search'><img src='http://www.indeed.com/p/jobsearch.gif' style="border: 0; vertical-align: middle;" alt='Indeed job search'></a></span>
+        <span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
+      </div>
+      <div id='html-tracking'>
+        <script>
+          // $('#html-tracking').load('/api/admin/tracking');
+        </script>
       </div>
     </div>
   </body>
@@ -19,4 +26,5 @@
     <script src='app/admin/admin-controller.js'></script>
     <script src='app/services/services.js'></script>
     <script src='app/app.js'></script>
+    <script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
 </html>

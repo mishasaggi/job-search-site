@@ -1,7 +1,7 @@
 angular.module('app.services', [])
 
   .factory('UserSearch', ["$http", function($http){
-    //methods for making requests to the server
+
     var getJobs = function(query){
       console.log("in the search factory, getJobs. query is: ", query);
       return $http.post('/api/search/getJobs', query);
@@ -27,8 +27,13 @@ angular.module('app.services', [])
 
   .factory('AdminDash', ["$http", function($http){
 
-    return {
-
+    var saveTrackCode = function(code){
+      console.log("in the tracking service, code is: ", code);
+      return $http.post('/api/admin/track', code);
     }
 
-  }]);
+    return {
+      saveTrackCode: saveTrackCode
+    }
+
+  }])

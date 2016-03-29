@@ -5,6 +5,13 @@ module.exports = function(db) {
 
     login: function(username, password){
       //login after authenticating user
+    },
+
+    saveTrackCode: function(code){
+      console.log("in save track controller");
+      var collection = db.collection('admin');
+
+      return collection.insert({trackingCode: code});
     }
 
   }
