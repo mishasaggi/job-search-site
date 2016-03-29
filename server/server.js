@@ -11,14 +11,14 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 app.use('/node_modules', express.static(__dirname + '/../node_modules'))
 
-//Model and Route variables, asigned after database connection is established
+//Model and Route variables, assigned after database connection is established
 var SearchQuery, searchRouter;
 
 //---DATABASE---
 var dbConfig = require('./dbConfig.js');
 
 dbConfig.getDB().then( function(db){
-  console.log("database conection is:", db); //shows 
+  console.log("database conection is:", db);
 
   //----ROUTING----
   //routing is moved inside of then so that we wait for the database connection

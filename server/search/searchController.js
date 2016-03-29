@@ -4,7 +4,7 @@ module.exports = function(SearchQuery){
 
     getJobs: function(req, res){
 
-      console.log("in the controller method. the request body is: ", req.body);
+      console.log("in savestats jobs controller, request body is: ", req.body);
       var userQuery = req.body;
       userQuery.IP = '70.113.67.152' //temp test data
       userQuery.client = 'Chrome' //temp test data
@@ -25,19 +25,20 @@ module.exports = function(SearchQuery){
 
     saveStats: function(req, res) {
 
-      console.log("in save stats method (controller). req is: ", req.body);
+      console.log("in savestats stats controller, request body is: ", req.body);
 
-      //calls the model method
-      var testObj = {
-        query: "Java",
-        zipcode: 78704,
-        date: "Mar27",
-        ip: "1.2.3.5",
-        client: "Chrome"
+      //request object
+      var reqObj = {
+        query: req.body.jobTitle,
+        zipcode: req.body.zipcode,
+        date: "",
+        ip: "",
+        client: ""
       }
-      SearchQuery.saveStats( testObj.query, testObj.zipcode ,testObj.date, testObj.ip, testObj.client )
+      //calls the model method
+      SearchQuery.saveStats( reqObj.query, reqObj.zipcode ,reqObj.date, reqObj.ip, reqObj.client )
       .then(function(data){
-        console.log("response from serach model: ", data);
+        res.sendStatus(200);
       })
 
       //send response

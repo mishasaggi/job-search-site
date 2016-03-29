@@ -2,10 +2,10 @@
 module.exports = function(db){
   return {
 
-    saveStats: function(query, zipcode, date, ip){
-      console.log("database connection passed in is: ", db);
+    saveStats: function(query, zipcode, date, ip, client){
+      console.log("model: database connection passed in is: ", db);
       var collection = db.collection('searchStats');
-      return collection.insert({ searchKeywords: "javascript", zipcode: 78701, dateTime: "Mar28", ipAddress: "1.2.3.4" });
+      return collection.insert({ searchKeywords: query, zipcode: zipcode, dateTime: date, ipAddress: ip, client: client });
     },
 
     getStats: function(){
@@ -23,6 +23,7 @@ collection: searchStats
   searchKeywords: (String),
   zipcode: (Number),
   dateTime: (Date),
-  ipAddress: (String)
+  ipAddress: (String),
+  client: (String)
 }
 */
