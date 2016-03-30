@@ -19,14 +19,13 @@
   "dependencies": {
     "angular": "^1.5.2",
     "angular-ui-router": "^0.2.18",
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
-    "materialize-css": "^0.97.5",
     "mongodb": "^2.1.11",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
+    "morgan": "^1.7.0",
     "q": "^1.4.1",
     "request": "^2.69.0",
     "request-ip": "^1.2.2"
