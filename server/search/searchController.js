@@ -4,19 +4,22 @@ module.exports = function(SearchQuery){
 
     getJobs: function(req, res){
 
-      console.log("in savestats jobs controller, request body is: ", req.body);
-      var userQuery = req.body;
+      console.log("in jobs controller, request body is: ", req.body);
+      var userQuery = req.body.query;
+      
+      userQuery.startResults = req.body.start;
+      //npm package description here    
       var requestIp = require('request-ip');
       userQuery.IP = requestIp.getClientIp(req);
 
       // indeed API call
       var publisherKey = require('../api-publisher-id.js').publisherId;
       var request = require('request');
-      var url = 'http://api.indeed.com/ads/apisearch?publisher=' + publisherKey + '&format=json&q=' + userQuery.jobTitle + '&l=' + userQuery.zipcode + '&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=0&co=us&chnl=FJR&userip=' + userQuery.IP + '&useragent=' + userQuery.client +'&v=2' ;
+      var url = 'http://api.indeed.com/ads/apisearch?publisher=' + publisherKey + '&format=json&q=' + userQuery.jobTitle + '&l=' + userQuery.zipcode + '&sort=relevance&radius=25&st=&jt=&start=' + userQuery.startResults + '&limit=10&fromage=&filter=&latlong=0&co=us&chnl=FJR&userip=' + userQuery.IP + '&useragent=' + userQuery.client +'&v=2' ;
 
       request({url: url , json: true}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-          res.send(body.results);
+          res.send(body);
         }
       })
 
@@ -24,7 +27,7 @@ module.exports = function(SearchQuery){
 
     saveStats: function(req, res) {
 
-      console.log("in savestats stats controller, request body is: ", req.body);
+      console.log("in savestats controller, request body is: ", req.body);
       var requestIp = require('request-ip');
       var clientIp = requestIp.getClientIp(req);
       //request object

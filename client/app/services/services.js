@@ -2,9 +2,15 @@ angular.module('app.services', [])
 
   .factory('UserSearch', ["$http", function($http){
 
-    var getJobs = function(query){
-      console.log("in the search factory, getJobs. query is: ", query);
-      return $http.post('/api/search/getJobs', query);
+    var getJobs = function(query, start){
+      console.log("in the search factory, getJobs. query is: ", query,"and " ,start);
+      var totalJobs, results;
+       return $http.post('/api/search/getJobs', {query: query, start: start}).then(function(response){
+        console.log("get RESPONSE is", response);
+        return { results: response.data.results,
+                  totalJobs: response.data.totalResults }
+      })
+
     }
 
     var saveStats = function(stats){

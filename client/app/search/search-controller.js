@@ -6,6 +6,9 @@ angular.module('app.search', [])
     $scope.userInputError = false;
     $scope.jobResults = false;
     $scope.jobs = [];
+    $scope.totalJobs;
+    $scope.jobsPerPage = 10;
+    $scope.currentPage = 0;
 
     $scope.searchNow = function(){
       console.log("scope vars after input: ", $scope.userInput);
@@ -33,10 +36,13 @@ angular.module('app.search', [])
         $scope.userInputError = false;
 
         //call the service method to make an API call to indeed
-        UserSearch.getJobs($scope.userInput)
+        UserSearch.getJobs($scope.userInput, $scope.currentPage*$scope.jobsPerPage)
           .then( function(data){
-            // console.log("jobs data recieved from the server: ", data);
-            $scope.jobs = data.data;
+            console.log("jobs data recieved from the server: ", data);
+            //results per page
+            $scope.jobs = data.results;
+            //total jobs
+            $scope.totalJobs = data.totalJobs;
             $scope.jobResults = true;
           })
           //callthe service method to save stats to db
@@ -52,6 +58,36 @@ angular.module('app.search', [])
       }
     }
 
-    // maybe have a button to clear results?
+    $scope.prevPage = function() {
+      if ($scope.currentPage > 0) {
+        $scope.currentPage--;
+      }
+    };
 
-  }]);
+    $scope.prevPageDisabled = function() {
+      return $scope.currentPage === 0 ? "disabled" : "";
+    };
+
+    $scope.nextPage = function() {
+      if ($scope.currentPage < $scope.pageCount() - 1) {
+        $scope.currentPage++;
+      }
+    };
+
+    $scope.nextPageDisabled = function() {
+      return $scope.currentPage === $scope.pageCount() - 1 ? "disabled" : "";
+    };
+
+    $scope.pageCount = function() { //changed
+      return Math.ceil($scope.totalJobs/$scope.jobsPerPage);
+    };
+
+    $scope.$watch("currentPage", function(newValue, oldValue){
+      $scope.searchNow()
+    });
+
+
+  }])
+
+
+
