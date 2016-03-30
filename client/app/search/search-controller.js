@@ -9,6 +9,23 @@ angular.module('app.search', [])
 
     $scope.searchNow = function(){
       console.log("scope vars after input: ", $scope.userInput);
+
+      var navigator = window.navigator;
+      console.log("navigator is: ", navigator);
+
+      if( /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent) ) {
+          $scope.userInput.client = 'Mozilla FireFox';
+      } else if( /Chrome[\/\s](\d+\.\d+)/.test(navigator.userAgent) ){
+          $scope.userInput.client = 'Chrome'
+      } else if( navigator.userAgent.indexOf('OPR/') != -1 ){
+          $scope.userInput.client = 'Opera';
+      } else if( navigator.userAgent.indexOf('Trident') != -1 && navigator.userAgent.indexOf('MSIE') == -1 ){
+          $scope.userInput.client = 'IE11';
+      } else {
+        $scope.userInput.client = 'not detected';
+      }
+      console.log("client is: ", $scope.userInput.client);
+
       //validation
       if($scope.userInput.jobTitle === undefined && $scope.userInput.zipcode === undefined) {
         $scope.userInputError = true;
@@ -18,7 +35,7 @@ angular.module('app.search', [])
         //call the service method to make an API call to indeed
         UserSearch.getJobs($scope.userInput)
           .then( function(data){
-            console.log("jobs data recieved from the server: ", data);
+            // console.log("jobs data recieved from the server: ", data);
             $scope.jobs = data.data;
             $scope.jobResults = true;
           })
