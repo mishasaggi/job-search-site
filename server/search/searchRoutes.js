@@ -7,4 +7,5 @@ module.exports = function(app, SearchQuery){
   app.post('/getJobs', searchController.getJobs);
   app.post('/saveStats', searchController.saveStats);
   app.get('/getStats', searchController.getStats);
+  app.get('/getTrackCode', searchController.getTrackCode);
 }

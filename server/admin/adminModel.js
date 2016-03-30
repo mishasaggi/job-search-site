@@ -9,9 +9,9 @@ module.exports = function(db) {
 
     saveTrackCode: function(code){
       console.log("in save track controller");
-      var collection = db.collection('admin');
+      var collection = db.collection('scripts');
 
-      return collection.insert({trackingCode: code});
+      return collection.update({_id: "html tracker"}, { $set: { "trackingCode": code } } );
     }
 
   }

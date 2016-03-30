@@ -13,7 +13,7 @@ angular.module('app.services', [])
     }
 
     var getStats = function(){
-      console.log("in the admin factory");
+      console.log("in the search factory, getstats.");
       return $http.get('/api/search/getStats'); 
     }
 

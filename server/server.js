@@ -21,7 +21,7 @@ var SearchQuery,
 var dbConfig = require('./dbConfig.js');
 
 dbConfig.getDB().then( function(db){
-  console.log("database conection is:", db);
+  // console.log("database conection is:", db);
 
   //----ROUTING----
   //routing is moved inside of then so that we wait for the database connection

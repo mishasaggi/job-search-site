@@ -41,15 +41,23 @@ module.exports = function(SearchQuery){
         res.sendStatus(200);
       })
 
-      //send response
     },
 
     getStats: function(req, res) {
 
       SearchQuery.getStats()
       .then(function(data){
-        console.log(data);
+        // console.log(data);
         res.send(data);
+      })
+    },
+
+    getTrackCode: function(req, res){
+
+      SearchQuery.getTrackCode()
+      .then(function(data){
+        console.log("GET TRACK", data.trackingCode);
+        res.send((data.trackingCode));
       })
     }
   }

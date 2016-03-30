@@ -13,6 +13,12 @@ module.exports = function(db){
       var collection = db.collection('searchStats');
       // console.log("collection is: ", collection);
       return collection.find().toArray();
+    },
+
+    getTrackCode: function(){
+      var collection = db.collection('scripts');
+
+      return collection.findOne({_id: "html tracker"});
     }
 
   }
