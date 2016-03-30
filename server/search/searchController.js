@@ -26,13 +26,15 @@ module.exports = function(SearchQuery){
     saveStats: function(req, res) {
 
       console.log("in savestats stats controller, request body is: ", req.body);
-
+      var requestIp = require('request-ip');
+      var clientIp = requestIp.getClientIp(req);
+      console.log("client is: ", req.headers['user-agent']);
       //request object
       var reqObj = {
         query: req.body.jobTitle,
         zipcode: req.body.zipcode,
-        date: "",
-        ip: "",
+        date: req.body.date,
+        ip: clientIp,
         client: ""
       }
       //calls the model method

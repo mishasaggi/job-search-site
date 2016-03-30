@@ -24,6 +24,9 @@ angular.module('app.search', [])
           })
           //callthe service method to save stats to db
           .then (function(){
+            var now = new Date();
+            now = now.toUTCString();
+            $scope.userInput.date = now;
             UserSearch.saveStats($scope.userInput);
           })
           .then(function(data){
