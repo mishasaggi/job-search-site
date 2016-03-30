@@ -6,7 +6,9 @@ module.exports = function(SearchQuery){
 
       console.log("in savestats jobs controller, request body is: ", req.body);
       var userQuery = req.body;
-      userQuery.IP = '70.113.67.152' //temp test data
+      var requestIp = require('request-ip');
+      var clientIp = requestIp.getClientIp(req);
+      userQuery.IP = clientIp
       userQuery.client = 'Chrome' //temp test data
 
       // indeed API call
