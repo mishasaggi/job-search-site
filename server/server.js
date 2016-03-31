@@ -9,6 +9,7 @@ var jwt = require('jsonwebtoken');
 var secret = dbConfig.secret;
 
 var app = express();
+var port = process.env.PORT || 8089;
 
 app.use(bodyParser.urlencoded({extended: false}));
 //parse json urls
@@ -89,5 +90,5 @@ dbConfig.getDB().then( function(db){
 
 })
 
-app.listen(8080);
+app.listen(port);
 
