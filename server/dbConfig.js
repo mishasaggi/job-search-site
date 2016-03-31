@@ -3,6 +3,8 @@ var Q = require('q');
 var url = 'mongodb://localhost:27017/jobSearcherDB'
 var dbPromise = null;
 
+module.exports.secret = 'averyverysecretsecret';
+
 module.exports.getDB = function getDB(){
 
   if(dbPromise === null){
