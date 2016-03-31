@@ -4,14 +4,14 @@
       <input type='text' placeholder='username' ng-model='userCred.username'>
       <input type='text' placeholder='password' ng-model='userCred.password'>
       <button type='submit' ng-click='login()'> Admin Login </button>
-      <button type='submit' ng-click='clearToken()'> clear token </button>
+      <!-- <button type='submit' ng-click='clearToken()'> clear token </button> -->
     </form>
   </div>
   <br/><br/><br/>
 
-  <h2> Search for jobs </h2>
+  <h1> Search for jobs </h1>
   <div class='search-bar'>
-    <form>
+    <form class="search-form">
       <input type='text' placeholder='job-title' ng-model='userInput.jobTitle'>
       <input type='text' placeholder='zipcode' ng-model='userInput.zipcode'>
       <button type='submit' ng-click='searchNow()'> search now </button>

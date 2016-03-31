@@ -1,0 +1,49 @@
+body {
+    background: #eee;
+    text-align: center;
+    padding: 0 25px;
+    font-family: arial, sans-serif;
+}
+
+form {
+    padding: 20px;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+form input[type=text] {
+    margin-right: 10px;
+    width: 40%;
+    font-size: 12px;
+    padding: 5px;
+}
+
+ul li {
+    list-style-type: none;
+    display: inline;
+}
+
+.main-container {
+    width: 60%;
+    margin: 0 20% 0 20%;
+    float: center;
+}
+.jobs-all {
+    text-align: left;
+}
+
+.stats-results {
+    text-align: left;
+}
+
+button {
+    background-color: #1a1a1a; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    margin: 10px auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
