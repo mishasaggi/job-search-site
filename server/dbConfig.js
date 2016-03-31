@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var Q = require('q');
-var url = 'mongodb://localhost:27017/jobSearcherDB' || process.env['MONGOLAB_URI']
+var url = process.env['MONGOLAB_URI']
 var dbPromise = null;
 
 module.exports.secret = 'averyverysecretsecret';
