@@ -5,7 +5,7 @@ var path = require('path');
 var morgan = require('morgan');
 var dbConfig = require('./dbConfig.js');
 var jwt = require('jsonwebtoken');
-
+var secret = dbConfig.secret;
 
 var app = express();
 
@@ -15,21 +15,24 @@ app.use(bodyParser.json());
 //logs http requests to console
 app.use(morgan('dev'));
 
-app.set('superSecret', dbConfig.secret);
+// app.set('superSecret', dbConfig.secret);
 
 //serve static files
+
 //protected static route
 app.use('/app/admin/admin.html', function(req, res, next) {
   console.log("req path is: ", req.path);
 
-    console.log("in admin routes auth function");
+    console.log("in admin routes auth function. request is: ", req.headers);
       // check header or url parameters or post parameters for token
-      var token = req.body.token || req.query.token || req.headers['x-access-token'];
+      var token = req.body.token || req.query.token || req.headers['authorization'];
       // decode token
       if(token){
         // verifies secret and checks exp
-        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+        console.log("in admin routes auth function. token exists", token);
+        jwt.verify(token, secret, function(err, decoded) {
           if (err) {
+            console.log("token found. but err", err, "and decoded one is: ", decoded);
             return res.json({ success: false, message: 'Failed to authenticate token.' });
           } else {
             // if everything is good, save to request for use in other routes
@@ -38,13 +41,15 @@ app.use('/app/admin/admin.html', function(req, res, next) {
           }
         });
       } else {
+        console.log("no token was found!?!");
         // if there is no token, return an error
         return res.status(403).send({
             success: false,
             message: 'No token provided.'
-        }).redirect('/');
+        });
       }
   })
+
 //unprotected routes
 app.use(express.static(__dirname + '/../client')); // !! might need to change for protected routes
 app.use('/node_modules', express.static(__dirname + '/../node_modules'))
@@ -78,7 +83,7 @@ dbConfig.getDB().then( function(db){
 
   //inject routers and db model interface in the files
   require('./search/searchRoutes.js')(searchRouter, SearchQuery);
-  require('./admin/adminRoutes.js')(adminRouter, AdminQuery);
+  require('./admin/adminRoutes.js')(adminRouter, AdminQuery, jwt, secret);
 
 })
 
