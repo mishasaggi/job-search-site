@@ -3,8 +3,9 @@ module.exports = function(db) {
 
   return {
 
-    login: function(username, password){
-      //login after authenticating user
+    findUser: function(username, password){
+      var collection = db.collection('admin');
+      return collection.findOne({name: username});
     },
 
     saveTrackCode: function(code){
@@ -21,6 +22,7 @@ database schema
 collection: admin
 {
   username: (String),
-  password: (String)
+  password: (String),
+  flag: boolean
 }
 */

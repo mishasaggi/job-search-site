@@ -31,15 +31,22 @@ angular.module('app.services', [])
 
   }])
 
-  .factory('AdminDash', ["$http", function($http){
+  .factory('AdminDash', ["$http", "$localStorage", function($http){
 
     var saveTrackCode = function(code){
       console.log("in the tracking service, code is: ", code);
       return $http.post('/api/admin/track', code);
     }
 
+    var login = function(userCred){
+      console.log("in the login service, code is: ", userCred);
+      return $http.post('/api/admin/login', userCred);
+
+    }
+
     return {
-      saveTrackCode: saveTrackCode
+      saveTrackCode: saveTrackCode,
+      login: login
     }
 
   }])

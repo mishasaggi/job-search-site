@@ -4,7 +4,7 @@
   "description": "",
   "main": "./server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,10 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "jsonwebtoken": "^5.7.0",
     "mongodb": "^2.1.11",
     "morgan": "^1.7.0",
+    "ngstorage": "^0.3.10 ",
     "q": "^1.4.1",
     "request": "^2.69.0",
     "request-ip": "^1.2.2"

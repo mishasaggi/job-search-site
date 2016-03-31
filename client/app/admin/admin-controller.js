@@ -1,7 +1,7 @@
 console.log("in the admin controller");
 angular.module('app.admin', [])
 
-  .controller('AdminController', ["$scope", "$location", "UserSearch", "AdminDash", function($scope, $location, UserSearch, AdminDash){
+  .controller('AdminController', ["$scope", "$location", "$localStorage", "UserSearch", "AdminDash", function($scope, $location, $localStorage, UserSearch, AdminDash){
     $scope.stats = [];
     $scope.adminResults = false;
 
@@ -20,7 +20,23 @@ angular.module('app.admin', [])
       var codeObj = { code: $scope.trackingCode }
       AdminDash.saveTrackCode(codeObj)
         .then(function(data){
-          console.log("response from server: ", data);
+          console.log("response from server- saveTrackCode: ", data);
         })
     }
+
+    $scope.login = function(){
+      console.log("in login controller. vars are: ", $scope.userCred);
+      AdminDash.login($scope.userCred)
+      .then(function(response){
+        console.log("response from server- login: ", response)
+        $localStorage.token = response.data.token;
+        $location.path('/admin'); 
+        // $route.reload(); //check if reload is needed for the auth request
+      })
+    }
+
+    $scope.clearToken = function(){
+      $localStorage.$reset();
+    }
+
   }])
