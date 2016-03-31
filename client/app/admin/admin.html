@@ -12,26 +12,27 @@
   <div class='stats'>
     <h3> User Search Statistics</h3>
     <button ng-click='getStats()'> Get Stats </button>
-    <div class='results' ng-show='adminResults'>
+    <div class='stats-results' ng-show='adminResults'>
       <h3> Stats from the beginning of time </h3>
       <div class='stats-all' ng-model='stats'>
         <div class='stat-item' ng-repeat='stat in stats'>
           <div class='row'>
-            <div class='col'>
+            <span class='col'>
               {{ stat.searchKeywords }}
-            </div>
-            <div class='col'>
+            </span>
+            <span class='col'>
               {{ stat.zipcode }}
-            </div>
-            <div class='col'>
+            </span>
+            <span class='col'>
               {{ stat.dateTime }}
-            </div>
-            <div class='col'>
+            </span>
+            <span class='col'>
               {{ stat.ipAddress }}
-            </div>
-            <div class='col'>
+            </span>
+            <span class='col'>
               {{ stat.client }}
-            </div>
+            </span>
+            <br/><br/>
           </div>
         </div>
       </div>
