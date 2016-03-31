@@ -5,6 +5,7 @@ var path = require('path');
 var morgan = require('morgan');
 var dbConfig = require('./dbConfig.js');
 var jwt = require('jsonwebtoken');
+// var jwt = require('express-jwt');
 var secret = dbConfig.secret;
 
 var app = express();
@@ -20,7 +21,7 @@ app.use(morgan('dev'));
 //serve static files
 
 //protected static route
-app.use('/app/admin/admin.html', function(req, res, next) {
+app.get('/admin', function(req, res, next) {
   console.log("req path is: ", req.path);
 
     console.log("in admin routes auth function. request is: ", req.headers);
@@ -29,8 +30,9 @@ app.use('/app/admin/admin.html', function(req, res, next) {
       // decode token
       if(token){
         // verifies secret and checks exp
-        console.log("in admin routes auth function. token exists", token);
+        console.log("in admin routes auth function. token exists", token, "and ", secret);
         jwt.verify(token, secret, function(err, decoded) {
+
           if (err) {
             console.log("token found. but err", err, "and decoded one is: ", decoded);
             return res.json({ success: false, message: 'Failed to authenticate token.' });

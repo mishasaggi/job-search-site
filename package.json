@@ -27,6 +27,7 @@
     "jsonwebtoken": "^5.7.0",
     "mongodb": "^2.1.11",
     "morgan": "^1.7.0",
+    "ngstorage": "^0.3.10 ",
     "q": "^1.4.1",
     "request": "^2.69.0",
     "request-ip": "^1.2.2"
