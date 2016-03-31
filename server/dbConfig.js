@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var Q = require('q');
-var url = process.env['MONGOLAB_URI']
+var url = 'mongodb://heroku_j949g5nk:4cjn3h5u6pbbodc4t06congrtg@ds011800.mlab.com:11800/heroku_j949g5nk'
 var dbPromise = null;
 
 module.exports.secret = 'averyverysecretsecret';

@@ -13,7 +13,7 @@ module.exports = function(SearchQuery){
       userQuery.IP = requestIp.getClientIp(req);
 
       // indeed API call
-      var publisherKey = require('../api-publisher-id.js').publisherId || process.env['API_ACCESS_KEY'] ;
+      var publisherKey = process.env['API_ACCESS_KEY'] ;
 
       var request = require('request');
       var url = 'http://api.indeed.com/ads/apisearch?publisher=' + publisherKey + '&format=json&q=' + userQuery.jobTitle + '&l=' + userQuery.zipcode + '&sort=relevance&radius=25&st=&jt=&start=' + userQuery.startResults + '&limit=10&fromage=&filter=&latlong=0&co=us&chnl=FJR&userip=' + userQuery.IP + '&useragent=' + userQuery.client +'&v=2' ;
