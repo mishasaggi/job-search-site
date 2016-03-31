@@ -5,4 +5,6 @@ module.exports = function(app, AdminQuery){
 
   console.log("in the admin router. query is: ", AdminQuery, "and controller is: ", adminController);
   app.post('/track', adminController.saveTrackCode);
+  app.post('/login', adminController.login);
+
 }
