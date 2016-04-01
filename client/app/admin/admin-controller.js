@@ -4,6 +4,8 @@ angular.module('app.admin', [])
   .controller('AdminController', ["$scope", "$location", "$localStorage", "UserSearch", "AdminDash", function($scope, $location, $localStorage, UserSearch, AdminDash){
     $scope.stats = [];
     $scope.adminResults = false;
+    $scope.loginInputError = false;
+    $scope.userCred = {};
 
     $scope.getStats = function(){
       console.log("in get stats controller function");
@@ -25,14 +27,24 @@ angular.module('app.admin', [])
     }
 
     $scope.login = function(){
+
       console.log("in login controller. vars are: ", $scope.userCred);
-      AdminDash.login($scope.userCred)
-      .then(function(response){
-        console.log("response from server- login: ", response)
-        $localStorage.token = response.data.token;
-        $location.path('/admin'); 
-        // $route.reload(); //check if reload is needed for the auth request
-      })
+      if($scope.userCred.username === undefined || $scope.userCred.password === undefined) {
+        $scope.loginInputError = true;
+      } else if( $scope.userCred.username !== "modbAdmin" || $scope.userCred.password !== "hashit"){
+        $scope.loginInputError = true;
+      }
+       else {
+        $scope.loginInputError = false;
+
+        AdminDash.login($scope.userCred)
+        .then(function(response){
+          console.log("response from server- login: ", response)
+          $localStorage.token = response.data.token;
+          $location.path('/admin'); 
+          // $route.reload(); //check if reload is needed for the auth request
+        })
+      }
     }
 
     $scope.clearToken = function(){
