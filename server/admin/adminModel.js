@@ -1,4 +1,4 @@
-// server passes in the database connection in to the model
+// server passes the database connection in to the model
 module.exports = function(db) {
 
   return {
@@ -9,7 +9,6 @@ module.exports = function(db) {
     },
 
     saveTrackCode: function(code){
-      console.log("in save track controller");
       var collection = db.collection('scripts');
 
       return collection.update({_id: "html tracker"}, { $set: { "trackingCode": code } } );

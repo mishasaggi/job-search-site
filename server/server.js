@@ -5,7 +5,6 @@ var path = require('path');
 var morgan = require('morgan');
 var dbConfig = require('./dbConfig.js');
 var jwt = require('jsonwebtoken');
-// var jwt = require('express-jwt');
 var secret = dbConfig.secret;
 
 var app = express();
@@ -16,8 +15,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 //logs http requests to console
 app.use(morgan('dev'));
-
-// app.set('superSecret', dbConfig.secret);
 
 //serve static files
 
@@ -66,7 +63,6 @@ var SearchQuery,
 //---DATABASE---
 
 dbConfig.getDB().then( function(db){
-  // console.log("database conection is:", db);
 
   //----ROUTING----
   //routing is moved inside of then so that we wait for the database connection

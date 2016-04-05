@@ -11,11 +11,11 @@ angular.module('app.search', [])
     $scope.currentPage = 0;
 
     $scope.searchNow = function(){
-      console.log("scope vars after input: ", $scope.userInput);
 
       var navigator = window.navigator;
-      console.log("navigator is: ", navigator);
 
+      //The request header "User-Agent" is in most browsers incorrect, 
+      //this has more coverage in terms of picking up the true client browser
       if( /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent) ) {
           $scope.userInput.client = 'Mozilla FireFox';
       } else if( /Chrome[\/\s](\d+\.\d+)/.test(navigator.userAgent) ){
@@ -27,7 +27,6 @@ angular.module('app.search', [])
       } else {
         $scope.userInput.client = 'not detected';
       }
-      console.log("client is: ", $scope.userInput.client);
 
       //validation
       if($scope.userInput.jobTitle === undefined && $scope.userInput.zipcode === undefined) {
@@ -38,7 +37,6 @@ angular.module('app.search', [])
         //call the service method to make an API call to indeed
         UserSearch.getJobs($scope.userInput, $scope.currentPage*$scope.jobsPerPage)
           .then( function(data){
-            console.log("jobs data recieved from the server: ", data);
             //results per page
             $scope.jobs = data.results;
             //total jobs
@@ -53,7 +51,6 @@ angular.module('app.search', [])
             UserSearch.saveStats($scope.userInput);
           })
           .then(function(data){
-            console.log("save stats response recieved is: ", data);
           })
       }
     }
@@ -78,7 +75,7 @@ angular.module('app.search', [])
       return $scope.currentPage === $scope.pageCount() - 1 ? "disabled" : "";
     };
 
-    $scope.pageCount = function() { //changed
+    $scope.pageCount = function() {
       return Math.ceil($scope.totalJobs/$scope.jobsPerPage);
     };
 

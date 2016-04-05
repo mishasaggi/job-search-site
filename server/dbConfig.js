@@ -19,10 +19,6 @@ module.exports.getDB = function getDB(){
       } else if(err === null){
         console.log("Correctly connected to the db");
         defer.resolve(database);
-        // select a collection when inside the model
-        // db = database('searchStats');
-        // console.log("connection object is 1 : ", db); //exists
-        // return db;
       }
     })
     return dbPromise = defer.promise;

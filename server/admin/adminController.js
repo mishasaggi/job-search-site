@@ -3,11 +3,6 @@ module.exports = function(AdminQuery, jwt, secret){
   return {
 
     login: function(req, res){
-      // var dbConfig = require('../dbConfig.js');
-      // var jwt = require('jsonwebtoken');
-
-      console.log("in admin login, request body is: " ,req.body);
-      console.log("checking appget: ")
       var username = req.body.username;
       var password = req.body.password; //plaintext
       AdminQuery.findUser(username)
@@ -44,7 +39,6 @@ module.exports = function(AdminQuery, jwt, secret){
     },
 
     saveTrackCode: function(req, res){
-      console.log("in save code, request body is: ", req.body);
       var code = req.body.code;
       AdminQuery.saveTrackCode(code)
       .then(function(data){

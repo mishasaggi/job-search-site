@@ -4,11 +4,11 @@ module.exports = function(SearchQuery){
 
     getJobs: function(req, res){
 
-      console.log("in jobs controller, request body is: ", req.body);
       var userQuery = req.body.query;
       
       userQuery.startResults = req.body.start;
-      //npm package description here    
+      //the npm package looks for specific headers in the request and 
+      // falls back to some defaults if they do not exist.
       var requestIp = require('request-ip');
       userQuery.IP = requestIp.getClientIp(req);
 
@@ -21,6 +21,8 @@ module.exports = function(SearchQuery){
       request({url: url , json: true}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           res.send(body);
+        } else {
+          console.error("error in getting jobs from api (search controller): ", error);
         }
       })
 
@@ -28,7 +30,6 @@ module.exports = function(SearchQuery){
 
     saveStats: function(req, res) {
 
-      console.log("in savestats controller, request body is: ", req.body);
       var requestIp = require('request-ip');
       var clientIp = requestIp.getClientIp(req);
       //request object
@@ -51,7 +52,6 @@ module.exports = function(SearchQuery){
 
       SearchQuery.getStats()
       .then(function(data){
-        // console.log(data);
         res.send(data);
       })
     },
@@ -60,7 +60,6 @@ module.exports = function(SearchQuery){
 
       SearchQuery.getTrackCode()
       .then(function(data){
-        console.log("GET TRACK", data.trackingCode);
         res.send((data.trackingCode));
       })
     }
