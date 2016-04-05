@@ -1,5 +1,5 @@
 # job-search-site
-A MEAN stack job search engine that it built on Indeed's jobs API.
+A MEAN stack job search engine powered by Indeed's Jobs API.
 
 The user can search for jobs by providing keywords of job description/title and/ or location zipcode. 
 
